@@ -1,13 +1,6 @@
-/*
-Name: 			Theme Base
-Written by: 	Okler Themes - (http://www.okler.net)
-Theme Version:	8.0.0
-*/
 
-// Theme
 window.theme = {};
 
-// Theme Common Functions
 window.theme.fn = {
 
 	getOptions: function(opts) {
