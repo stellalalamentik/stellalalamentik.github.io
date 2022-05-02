@@ -1,9 +1,3 @@
-/*
-Plugin Name: 	BrowserSelector
-Written by: 	Okler Themes - (http://www.okler.net)
-Theme Version:	7.0.0
-*/
-
 (function($) {
 	$.extend({
 
