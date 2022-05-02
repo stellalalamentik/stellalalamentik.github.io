@@ -2,7 +2,7 @@
   "_args": [
     [
       "bootstrap-star-rating@4.0.6",
-      "E:\\_OKLER\\Templates\\Porto\\HTML"
+      "E:\\_Stella\\Templates\\Stella\\HTML"
     ]
   ],
   "_from": "bootstrap-star-rating@4.0.6",
@@ -26,7 +26,7 @@
   ],
   "_resolved": "https://registry.npmjs.org/bootstrap-star-rating/-/bootstrap-star-rating-4.0.6.tgz",
   "_spec": "4.0.6",
-  "_where": "E:\\_OKLER\\Templates\\Porto\\HTML",
+  "_where": "E:\\_Stella\\Templates\\Stella\\HTML",
   "author": {
     "name": "Kartik Visweswaran",
     "email": "kartikv2@gmail.com"
