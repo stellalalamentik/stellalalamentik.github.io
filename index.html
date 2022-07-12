@@ -141,8 +141,10 @@
 
 									<div class="post-image ml-0">
 										<div class="embed-responsive embed-responsive-16by9">
-											<video class="embed-responsive-item" muted autoplay controls>
-												<source src="vid/KedaiKambar.mp4" type="video/mp4">
+
+											<video id="myVideo" class="embed-responsive-item" muted autoplay controls>
+												<source src="vid/Kedaikambar.mp4" type="video/mp4">
+
 											</video>
 										</div>
 									</div>
@@ -500,7 +502,31 @@
 				</div>
 			</footer>
 		</div>
+		<script>
+		function toggleMute() {
 
+			var video=document.getElementById("myVideo")
+			
+			if(video.muted){
+				video.muted = false;
+				$('#myVideo').play()
+				
+			} else {
+				video.muted = true;
+			}
+			
+		}
+		const delay = ms => new Promise(res => setTimeout(res, ms));
+		const kedaikambar = async () => {
+			await delay(4000);
+			toggleMute();
+		};
+
+		window.addEventListener('load', function () {
+  			kedaikambar();
+		})
+
+		</script>
 		<script src="vendor/jquery/jquery.min.js"></script>
 		<script src="vendor/jquery.appear/jquery.appear.min.js"></script>
 		<script src="vendor/jquery.easing/jquery.easing.min.js"></script>
