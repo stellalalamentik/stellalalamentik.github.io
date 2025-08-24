@@ -123,60 +123,25 @@
 				
 
 				<div class="container pt-2 pb-4">
-
+				
 					<div class="row pb-4 mb-2">
 						<div class="col-md-6 mb-4 mb-md-0 appear-animation" data-appear-animation="fadeInLeftShorter" data-appear-animation-delay="300">
-
+							<div id="tweet"></div>	
 							<div class="owl-carousel owl-theme nav-inside nav-inside-edge nav-squared nav-with-transparency nav-dark mt-3" data-plugin-options="{'items': 1, 'margin': 10, 'loop': false, 'nav': true, 'dots': false}">
-								<div>
-									<div class="img-thumbnail border-0 border-radius-0 p-0 d-block">
-										<img src="img/resep/ayam-goreng-ketumbar.jpg" class="img-fluid border-radius-0" alt="Resep Ayam Goreng Ketumbar">
-									</div>
-								</div>
-								<div>
-									<div class="img-thumbnail border-0 border-radius-0 p-0 d-block">
-										<img src="img/resep/ayam-goreng-ketumbar2.jpg" class="img-fluid border-radius-0" alt="Resep Ayam Goreng Ketumbar">
-									</div>
-								</div>
+	
+
 							</div>
 
 
 						</div>
 						<div class="col-md-6">
-							<div class="overflow-hidden">
-								<h2 class="text-color-dark font-weight-normal text-4 mb-0 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="600">Resep <strong class="font-weight-extra-bold">Ayam goreng ketumbar</strong></h2>
-							</div>
-							<p class="appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="800">
-								Bahan:
-								<ul class="appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="800">
-									<li>1 ekor ayam, beri garam dan jeruk nipis, cuci, dan sisihkan</li> 
-									<li>1/2 buah jeruk nipis, peras</li>
-									<li>1 sdm kecap manis</li>
-									<li>1 sdm kecap asin</li>
-									<li>1 sdt garam</li>
-									<li>2 sdm gula pasir</li>
-								</ul>
-								<p class="appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="800">Bumbu halus:</p>
-								<ul class="appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="800">
-									<li>4 buah bawang merah</li>
-									<li>8 buah bawang putih</li>
-									<li>3 sdm ketumbar butir</li>
-									<li>1 sdt bubuk merica</li>
-									<li>1 ruas jahe</li>
-								</ul>
-								
-								<ol class="appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="800">
-									Cara membuat:
-									<li>Marinasi ayam dengan bumbu halus ditambah kecap asin, kecap manis, gula, garam, dan perasan jeruk nipis. Diamkan minimal 30 menit hingga bumbu meresap.</li>
-									<li>Goreng hingga matang (api sedang).</li>
-								</ol>
-							</p>
+						
 
 							<div class="overflow-hidden mt-4">
-								<h2 class="text-color-dark font-weight-normal text-4 mb-0 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="1000">Resep <strong class="font-weight-extra-bold">Details</strong></h2>
+								
 							</div>
 							<ul class="list list-icons list-primary list-borders text-2 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="1200">
-								<li><i class="fas fa-caret-right left-10"></i> <a href="https://sfile.mobi/1JXxbJSR0I07" target="_blank" class="text-dark"><strong class="text-color-primary">Download Resep!</strong></a></li>
+
 							</ul>
 						</div>
 					</div>
@@ -260,6 +225,52 @@
 		<script src="js/theme.js"></script>
 		<script src="js/custom.js"></script>
 		<script src="js/theme.init.js"></script>
+
+		 <script>
+    const API_URL = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=52792"; 
+    // contoh: ambil Bread and Butter Pudding by idMeal
+
+    fetch(API_URL)
+      .then(response => response.json())
+      .then(data => {
+        const meal = data.meals[0];
+        const container = document.getElementById("tweet");
+        container.innerHTML = `
+		  <h2 class="text-color-dark font-weight-normal">
+			${meal.strMeal}
+		  </h2>
+
+		  <span class="thumb-info-wrapper m-0">
+			<img src="${meal.strMealThumb}" class="img-fluid" alt="${meal.strMeal}">
+	
+		  </span>
+
+          
+          <p><strong>Category:</strong> ${meal.strCategory}</p>
+          <p><strong>Area:</strong> ${meal.strArea}</p>
+          <a href="${meal.strYoutube}" target="_blank">Watch on YouTube</a>
+          <h3>Ingredients</h3>
+          <ul class="ingredients" id="ingredients"></ul>
+          <h3>Instructions</h3>
+          <p class="instructions">${meal.strInstructions}</p>
+        `;
+
+        // ambil ingredients + measure
+        const ingredientsList = document.getElementById("ingredients");
+        for (let i = 1; i <= 20; i++) {
+          const ingredient = meal[`strIngredient${i}`];
+          const measure = meal[`strMeasure${i}`];
+          if (ingredient && ingredient.trim() !== "") {
+            const li = document.createElement("li");
+            li.textContent = `${ingredient} - ${measure}`;
+            ingredientsList.appendChild(li);
+          }
+        }
+      })
+      .catch(error => {
+        document.getElementById("tweet").innerText = "Error: " + error;
+      });
+  </script>
 
 	</body>
 </html>
